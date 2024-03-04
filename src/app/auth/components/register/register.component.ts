@@ -4,12 +4,15 @@ import { Store } from '@ngrx/store';
 import { register } from '../../store/actions';
 import { RegisterRequestInterface } from '../../types/registerRequest.interface';
 import { RouterLink } from '@angular/router';
+import { AuthStateInterface } from '../../types/authState.interface';
+import { CommonModule } from '@angular/common';
+import { selectIsSubmitting } from '../../store/reducers';
 
 @Component({
   selector: 'mc-register',
   templateUrl: './register.component.html',
   standalone: true,
-  imports: [ReactiveFormsModule, RouterLink],
+  imports: [ReactiveFormsModule, RouterLink, CommonModule],
 })
 export class RegisterComponent {
   form = this.fb.nonNullable.group({
@@ -17,8 +20,12 @@ export class RegisterComponent {
     email: ['', Validators.required],
     password: ['', Validators.required],
   });
+  isSubmitting$ = this.store.select(selectIsSubmitting);
 
-  constructor(private fb: FormBuilder, private store: Store) {}
+  constructor(
+    private fb: FormBuilder,
+    private store: Store<{ auth: AuthStateInterface }>
+  ) {}
 
   onSubmit() {
     console.log('form', this.form.getRawValue());
