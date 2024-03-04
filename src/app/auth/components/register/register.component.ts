@@ -7,6 +7,7 @@ import { RouterLink } from '@angular/router';
 import { AuthStateInterface } from '../../types/authState.interface';
 import { CommonModule } from '@angular/common';
 import { selectIsSubmitting } from '../../store/reducers';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'mc-register',
@@ -22,10 +23,7 @@ export class RegisterComponent {
   });
   isSubmitting$ = this.store.select(selectIsSubmitting);
 
-  constructor(
-    private fb: FormBuilder,
-    private store: Store<{ auth: AuthStateInterface }>
-  ) {}
+  constructor(private fb: FormBuilder, private store: Store) {}
 
   onSubmit() {
     console.log('form', this.form.getRawValue());
