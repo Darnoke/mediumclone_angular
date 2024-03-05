@@ -1,13 +1,11 @@
 import { Component } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
-import { register } from '../../store/actions';
+import { authActions } from '../../store/actions';
 import { RegisterRequestInterface } from '../../types/registerRequest.interface';
 import { RouterLink } from '@angular/router';
-import { AuthStateInterface } from '../../types/authState.interface';
 import { CommonModule } from '@angular/common';
 import { selectIsSubmitting } from '../../store/reducers';
-import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'mc-register',
@@ -30,6 +28,6 @@ export class RegisterComponent {
     const request: RegisterRequestInterface = {
       user: this.form.getRawValue(),
     };
-    this.store.dispatch(register({ request }));
+    this.store.dispatch(authActions.register({ request }));
   }
 }
