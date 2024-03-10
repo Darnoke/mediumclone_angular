@@ -10,7 +10,7 @@ import {
   selectValidationErrors,
 } from '../../store/reducers';
 import { combineLatest } from 'rxjs';
-import { BackendErrorMessages } from 'src/app/shared/components/backendErrorMessages/backendErrorMessages.component';
+import { BackendErrorMessagesComponent } from 'src/app/shared/components/backendErrorMessages/backendErrorMessages.component';
 import { LoginRequestInterface } from '../../types/loginRequest.interface';
 
 @Component({
@@ -21,7 +21,7 @@ import { LoginRequestInterface } from '../../types/loginRequest.interface';
     ReactiveFormsModule,
     RouterLink,
     CommonModule,
-    BackendErrorMessages,
+    BackendErrorMessagesComponent,
   ],
 })
 export class LoginComponent {

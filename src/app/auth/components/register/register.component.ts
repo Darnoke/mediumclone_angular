@@ -10,7 +10,7 @@ import {
   selectValidationErrors,
 } from '../../store/reducers';
 import { combineLatest } from 'rxjs';
-import { BackendErrorMessages } from 'src/app/shared/components/backendErrorMessages/backendErrorMessages.component';
+import { BackendErrorMessagesComponent } from 'src/app/shared/components/backendErrorMessages/backendErrorMessages.component';
 
 @Component({
   selector: 'mc-register',
@@ -20,7 +20,7 @@ import { BackendErrorMessages } from 'src/app/shared/components/backendErrorMess
     ReactiveFormsModule,
     RouterLink,
     CommonModule,
-    BackendErrorMessages,
+    BackendErrorMessagesComponent,
   ],
 })
 export class RegisterComponent {
