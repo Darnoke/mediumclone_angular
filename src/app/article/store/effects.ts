@@ -4,6 +4,8 @@ import { catchError, map, of, switchMap, tap } from 'rxjs';
 import { articleActions } from './actions';
 import { ArticleService as SharedArticleService } from 'src/app/shared/services/article.service';
 import { ArticleInterface } from 'src/app/shared/types/article.interface';
+import { ArticleService } from '../services/article.service';
+import { Router } from '@angular/router';
 
 export const getArticle = createEffect(
   (
@@ -25,4 +27,35 @@ export const getArticle = createEffect(
     );
   },
   { functional: true }
+);
+
+export const deleteArticle = createEffect(
+  (actions$ = inject(Actions), articleService = inject(ArticleService)) => {
+    return actions$.pipe(
+      ofType(articleActions.deleteArticle),
+      switchMap(({ slug }) => {
+        return articleService.deleteArticle(slug).pipe(
+          map(() => {
+            return articleActions.deleteArticleSuccess();
+          }),
+          catchError(() => {
+            return of(articleActions.deleteArticleFailure());
+          })
+        );
+      })
+    );
+  },
+  { functional: true }
+);
+
+export const redirectAfterDeleteEffect = createEffect(
+  (actions$ = inject(Actions), router = inject(Router)) => {
+    return actions$.pipe(
+      ofType(articleActions.deleteArticleSuccess),
+      tap(() => {
+        router.navigateByUrl('/');
+      })
+    );
+  },
+  { functional: true, dispatch: false }
 );

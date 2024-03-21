@@ -18,6 +18,7 @@ import { CommonModule } from '@angular/common';
 import { LoadingComponent } from 'src/app/shared/components/loading/loading.component';
 import { ErrorMessageComponent } from 'src/app/shared/components/errorMessage/errorMessage.component';
 import { TagListComponent } from 'src/app/shared/components/tagList/tagList.component';
+import { deleteArticle } from '../../store/effects';
 
 @Component({
   selector: 'mc-article',
@@ -61,5 +62,9 @@ export class ArticleComponent implements OnInit {
 
   ngOnInit(): void {
     this.store.dispatch(articleActions.getArticle({ slug: this.slug }));
+  }
+
+  deleteArticle(): void {
+    this.store.dispatch(articleActions.deleteArticle({ slug: this.slug }));
   }
 }
