@@ -1,9 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { BannerComponent } from 'src/app/shared/components/banner/banner.component';
-import { FeedComponent } from 'src/app/shared/components/feed/feed.component';
-import { FeedTogglerComponent } from 'src/app/shared/components/feedToggler/feedToggler.component';
-import { PopularTagsComponent } from 'src/app/shared/components/popularTags/popularTags.component';
 import { articleActions } from '../../store/actions';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { combineLatest, filter, map } from 'rxjs';
@@ -18,7 +14,6 @@ import { CommonModule } from '@angular/common';
 import { LoadingComponent } from 'src/app/shared/components/loading/loading.component';
 import { ErrorMessageComponent } from 'src/app/shared/components/errorMessage/errorMessage.component';
 import { TagListComponent } from 'src/app/shared/components/tagList/tagList.component';
-import { deleteArticle } from '../../store/effects';
 
 @Component({
   selector: 'mc-article',
